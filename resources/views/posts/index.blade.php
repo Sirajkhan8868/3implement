@@ -15,6 +15,7 @@
         <textarea name="content" required></textarea>
         <button type="submit">Add Comment</button>
     </form>
+
 @endforeach
 
 <div>

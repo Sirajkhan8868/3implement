@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
@@ -9,11 +8,16 @@ class CommentController extends Controller
 {
     public function store(Request $request, $postid)
     {
-        Comment::create([
-            'post_id'=> $postid,
-             'user_id'=> auth()->id(),
-             'content'=> request()->content
+        $request->validate([
+            'content' => 'required|string|max:500',
         ]);
+
+        Comment::create([
+            'post_id' => $postid,
+            'user_id' => 1,
+            'content' => $request->input('content')
+        ]);
+
         return redirect()->back()->with('success', 'Comment added successfully');
     }
 }
